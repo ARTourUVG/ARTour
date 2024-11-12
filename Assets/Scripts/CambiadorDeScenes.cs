@@ -10,6 +10,8 @@ public class CambiadorDeScenes : MonoBehaviour
     [SerializeField]
     private UIDocument uiDocument;
 
+    public GameObject[] disableObjects;
+
     [SerializeField]
     private string nombreEscenaDestino;
 
@@ -18,7 +20,7 @@ public class CambiadorDeScenes : MonoBehaviour
     private SceneAsset escenaDestino;
     #endif
 
-    public static CambiadorDeScenes Instance;
+    public static CambiadorDeScenes Instance { get; private set; }
 
     private const string NOMBRE_BOTON = "boton_ir_a_videojuegos";
 
@@ -78,7 +80,30 @@ public class CambiadorDeScenes : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(minigameSceneName))
         {
+
+            foreach (GameObject obj in disableObjects)
+            {
+                obj.SetActive(false);
+            }
+
             SceneManager.LoadScene(minigameSceneName, LoadSceneMode.Additive);
+        }
+        else
+        {
+            Debug.LogError("No se ha proporcionado un nombre de escena válido para el minijuego.");
+        }
+    }
+
+    public void UnloadMinigame(string minigameSceneName)
+    {
+        if (!string.IsNullOrEmpty(minigameSceneName))
+        {
+            foreach (GameObject obj in disableObjects)
+            {
+                obj.SetActive(true);
+            }
+
+            SceneManager.UnloadSceneAsync(minigameSceneName);
         }
         else
         {

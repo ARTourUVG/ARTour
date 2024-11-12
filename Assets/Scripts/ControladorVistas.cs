@@ -6,6 +6,7 @@ using UnityEngine.Video;
 using System.Collections.Generic;
 // using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
+using Assets.Minijuegos.Scripts;
 
 // Agregar esto justo antes de la clase ControladorVistas
 [System.Serializable]
@@ -61,7 +62,8 @@ public class ControladorVistas : MonoBehaviour
 
     private Button botonIniciarVideoJuego;
 
-
+    [SerializeField]
+    private Assets.Minijuegos.Scripts.Scene scene;
 
 
 
@@ -381,13 +383,16 @@ public class ControladorVistas : MonoBehaviour
         Debug.Log("Botón de Iniciar Video Juego presionado");
         int idTargetActual = SetNavigationTarget.Instance.GetCurrentTargetId();
         if (idTargetActual == 1){
-            CambiadorDeScenes.Instance.LoadMinigame("Breakout");
+            scene.LoadScene("Breakout");
+            //CambiadorDeScenes.Instance.LoadMinigame("Breakout");
         }
         else if (idTargetActual == 12){
-            CambiadorDeScenes.Instance.LoadMinigame("FlappyBird");
+            scene.LoadScene("FlappyBird");
+            //CambiadorDeScenes.Instance.LoadMinigame("FlappyBird");
         }
         else if (idTargetActual == 22){
-            CambiadorDeScenes.Instance.LoadMinigame("Trivia");
+            scene.LoadScene("Trivia");
+            //CambiadorDeScenes.Instance.LoadMinigame("Trivia");
         }
     }
 
@@ -397,7 +402,8 @@ public class ControladorVistas : MonoBehaviour
     }
 
     public void OnClickIrAMenuVideoJuegos(){
-        CambiadorDeScenes.Instance.LoadMinigame("GameMenu");
+        //CambiadorDeScenes.Instance.LoadMinigame("GameMenu");
+        SceneManager.LoadScene("GameMenu");
     }
 
     public PuntoDeInteres ObtenerInformacionPunto(string indice)

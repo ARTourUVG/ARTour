@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.5748165, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4327,6 +4327,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0cd9ce605995d644e8f41659f05e5470, type: 3}
   m_PrefabInstance: {fileID: 409534384}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &649668673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 649668675}
+  - component: {fileID: 649668674}
+  m_Layer: 0
+  m_Name: Scene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &649668674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649668673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4905457480bc9c4e88d1bc374917ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableObjects:
+  - {fileID: 1365349048}
+--- !u!4 &649668675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649668673}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.793074, y: 0.908716, z: 5.3083096}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &673683484
 GameObject:
   m_ObjectHideFlags: 0
@@ -7000,6 +7046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiDocument: {fileID: 1824555806}
+  disableObjects: []
   nombreEscenaDestino: GameMenu
   escenaDestino: {fileID: 102900000, guid: 2a3eb6422887e664294f0086cb94de1a, type: 3}
 --- !u!4 &1206006305
@@ -8051,6 +8098,7 @@ MonoBehaviour:
   ventanaEscanearQR: {fileID: 71898281}
   ventanaInformacionRuta: {fileID: 505914740}
   ventanaInformacionCompletaRuta: {fileID: 164393923}
+  scene: {fileID: 0}
   videoPlayer: {fileID: 1590460751}
   "imagen_admisiones_recepci\xF3n": {fileID: 2800000, guid: faeee91b54bdf43daa53afd3443cee1b, type: 3}
   imagen_elevadores_2_ubicacion1: {fileID: 2800000, guid: f7d45371ae7704e6b9b0e906fa3d06ef, type: 3}
@@ -12449,3 +12497,4 @@ SceneRoots:
   - {fileID: 1365349049}
   - {fileID: 1703441493}
   - {fileID: 1206006305}
+  - {fileID: 649668675}
