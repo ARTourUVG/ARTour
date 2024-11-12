@@ -7,7 +7,7 @@ public class AStarPathfinding : MonoBehaviour
 
     private Node[,] grid;
     private int gridSizeX, gridSizeY;
-    public Vector2 gridWorldSize; // Define el tamaño del grid
+    public Vector2 gridWorldSize; // Define el tamaï¿½o del grid
     public float nodeRadius; // Radio de cada nodo
     private float nodeDiameter;
 
@@ -25,15 +25,15 @@ public class AStarPathfinding : MonoBehaviour
         }
     }
 
-    // Start se llama antes de la primera actualización del frame
+    // Start se llama antes de la primera actualizaciï¿½n del frame
     void Start()
     {
         nodeDiameter = nodeRadius * 2;
-        gridWorldSize = new Vector2(20, 20); // ajustar según el tamaño del grid
+        gridWorldSize = new Vector2(20, 20); // ajustar segï¿½n el tamaï¿½o del grid
         CreateGrid();
     }
 
-    // Función para crear el grid
+    // Funcion para crear el la cuadricula
     public void CreateGrid()
     {
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
@@ -44,17 +44,18 @@ public class AStarPathfinding : MonoBehaviour
         {
             for (int y = 0; y < gridSizeY; y++)
             {
-                Vector3 worldPoint = new Vector3(x * nodeDiameter, 0, y * nodeDiameter); // ajustar según el tamaño del grid
+                // ajustar segun el tamano de la cuadricula
+                Vector3 worldPoint = new Vector3(x * nodeDiameter, 0, y * nodeDiameter); 
                 bool walkable = true; 
                 grid[x, y] = new Node(walkable, worldPoint, x, y);
             }
         }
     }
 
-    // Función para obtener el nodo en el mundo
+    // Funciï¿½n para obtener el nodo en el mundo
     public Node NodeFromWorldPoint(Vector3 worldPosition)
     {
-        // determina la posición del nodo en el grid
+        // determina la posiciï¿½n del nodo en el grid
         float percentX = (worldPosition.x + (gridWorldSize.x / 2)) / gridWorldSize.x;
         float percentY = (worldPosition.z + (gridWorldSize.y / 2)) / gridWorldSize.y;
         percentX = Mathf.Clamp01(percentX);
@@ -63,10 +64,10 @@ public class AStarPathfinding : MonoBehaviour
         int x = Mathf.RoundToInt((gridSizeX - 1) * percentX);
         int y = Mathf.RoundToInt((gridSizeY - 1) * percentY);
 
-        return grid[x, y]; // asegura que el nodo esté dentro del grid
+        return grid[x, y]; // asegura que el nodo estï¿½ dentro del grid
     }
 
-    // Función para encontrar el camino entre dos puntos
+    // Funciï¿½n para encontrar el camino entre dos puntos
     public List<Node> FindPath(Vector3 startPos, Vector3 targetPos)
     {
         Node startNode = NodeFromWorldPoint(startPos);
@@ -125,10 +126,10 @@ public class AStarPathfinding : MonoBehaviour
             }
         }
 
-        return null; // no se encontró un camino
+        return null; // no se encontrï¿½ un camino
     }
 
-    // Función para obtener la distancia entre dos nodos
+    // Funciï¿½n para obtener la distancia entre dos nodos
     public int GetDistance(Node a, Node b)
     {
         if (a == null || b == null)
@@ -142,7 +143,7 @@ public class AStarPathfinding : MonoBehaviour
         return distX + distY; // distancia Manhattan
     }
 
-    // Función para rehacer el camino
+    // Funciï¿½n para rehacer el camino
     private List<Node> RetracePath(Node startNode, Node endNode)
     {
         List<Node> path = new List<Node>();
@@ -157,7 +158,7 @@ public class AStarPathfinding : MonoBehaviour
         return path;
     }
 
-    // Función para obtener los vecinos de un nodo
+    // Funciï¿½n para obtener los vecinos de un nodo
     private List<Node> GetNeighbors(Node node)
     {
         List<Node> neighbors = new List<Node>();
@@ -169,7 +170,7 @@ public class AStarPathfinding : MonoBehaviour
                 int checkX = node.gridX + x;
                 int checkY = node.gridY + y;
 
-                // revisa si el nodo está dentro del grid
+                // revisa si el nodo estï¿½ dentro del grid
                 if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
                 {
                     neighbors.Add(grid[checkX, checkY]);
@@ -190,7 +191,7 @@ public class Node
     public int gridY;
     public Node parent;
     public int gCost; // costo de movimiento desde el nodo inicial
-    public int hCost; // heurística de costo de movimiento al nodo final
+    public int hCost; // heurï¿½stica de costo de movimiento al nodo final
     public int fCost { get { return gCost + hCost; } } // costo total
 
     // Constructor de la clase
