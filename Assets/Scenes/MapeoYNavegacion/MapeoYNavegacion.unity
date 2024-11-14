@@ -4678,8 +4678,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4905457480bc9c4e88d1bc374917ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameMenuName: GameMenu
+  menuName: MapeoYNavegacion
   disableObjects:
-  - {fileID: 1365349048}
+  - {fileID: 767880317}
+  - {fileID: 505914739}
+  - {fileID: 1824555805}
+  - {fileID: 71898280}
+  - {fileID: 164393921}
+  - {fileID: 832659173}
 --- !u!4 &724918092
 Transform:
   m_ObjectHideFlags: 0

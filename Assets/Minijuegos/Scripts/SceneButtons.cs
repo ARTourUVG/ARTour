@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace Assets.Minijuegos.Scripts
@@ -12,10 +15,16 @@ namespace Assets.Minijuegos.Scripts
         [SerializeField]
         private string menuName;
 
+        public string mainMenuName;
+        public string gameMenuName;
+
         [SerializeField]
         private string[] sceneNames;
         [SerializeField]
         private string[] buttonNames;
+
+        private Dictionary<Button, Action> buttonActions = new Dictionary<Button, Action>();
+
 
         //void Start()
         //{
@@ -32,6 +41,18 @@ namespace Assets.Minijuegos.Scripts
 
         public void LoadScene(string sceneName)
         {
+            if (SceneManager.GetSceneByName(sceneName).isLoaded)
+            {
+                return;
+            }
+
+            if (sceneName == mainMenuName && SceneManager.GetActiveScene().name == gameMenuName)
+            {
+                scene.LoadMenu();
+                SceneManager.LoadScene(sceneName);
+                return;
+            }
+
             Scene.Instance.LoadScene(sceneName);
         }
 
@@ -44,9 +65,16 @@ namespace Assets.Minijuegos.Scripts
                 Button button = mainMenu.Q<Button>(buttonNames[i]);
                 int index = i;
 
-                // Asegurarse de eliminar cualquier suscripción anterior para evitar duplicados
-                button.clicked -= null;
-                button.clicked += () => LoadScene(sceneNames[index]);
+                if (buttonActions.ContainsKey(button))
+                {
+                    button.clicked -= buttonActions[button];
+                }
+
+                Action action = () => LoadScene(sceneNames[index]);
+                buttonActions[button] = action;
+
+                // Suscribir el evento
+                button.clicked += action;
             }
         }
     }

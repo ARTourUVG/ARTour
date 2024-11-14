@@ -27,7 +27,7 @@ public class ControladorVistas : MonoBehaviour
 
     // Instancia de la clase
 
-    public static ControladorVistas Instance;
+    public static ControladorVistas Instance { get; private set; }
 
     // Seccion de ventanas:
     public UIDocument ventanaPrincipal; 
@@ -45,6 +45,10 @@ public class ControladorVistas : MonoBehaviour
     public VisualElement contenedorDeTriggerVideoJuego;
 
 
+    private bool isVentanaPrincipalVisible;
+    private bool isVentanaEscanearQRVisible;
+    private bool isVentanaInformacionRutaVisible;
+    private bool isVentanaInformacionCompletaRutaVisible;
 
 
 
@@ -141,6 +145,7 @@ public class ControladorVistas : MonoBehaviour
         {
             Instance = this;
             rootVentanaInformacionRuta = ventanaInformacionRuta.rootVisualElement;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -343,6 +348,22 @@ public class ControladorVistas : MonoBehaviour
         // }
     }
 
+    public void GuardarEstadoVistas()
+    {
+        isVentanaPrincipalVisible = rootVentanaPrincipal.style.display == DisplayStyle.Flex;
+        isVentanaEscanearQRVisible = rootVentanaEscanearQR.style.display == DisplayStyle.Flex;
+        isVentanaInformacionRutaVisible = rootVentanaInformacionRuta.style.display == DisplayStyle.Flex;
+        isVentanaInformacionCompletaRutaVisible = rootVentanaInformacionCompletaRuta.style.display == DisplayStyle.Flex;
+    }
+
+    public void RestaurarEstadoVistas()
+    {
+        rootVentanaPrincipal.style.display = isVentanaPrincipalVisible ? DisplayStyle.Flex : DisplayStyle.None;
+        rootVentanaEscanearQR.style.display = isVentanaEscanearQRVisible ? DisplayStyle.Flex : DisplayStyle.None;
+        rootVentanaInformacionRuta.style.display = isVentanaInformacionRutaVisible ? DisplayStyle.Flex : DisplayStyle.None;
+        rootVentanaInformacionCompletaRuta.style.display = isVentanaInformacionCompletaRutaVisible ? DisplayStyle.Flex : DisplayStyle.None;
+    }
+
     private void InicializarInformacionRutas()
     {
         informacionRutas = new Dictionary<string, PuntoDeInteres>
@@ -382,6 +403,7 @@ public class ControladorVistas : MonoBehaviour
     public void OnClickIniciarVideoJuego(){
         Debug.Log("Botón de Iniciar Video Juego presionado");
         int idTargetActual = SetNavigationTarget.Instance.GetCurrentTargetId();
+
         if (idTargetActual == 1){
             scene.LoadScene("Breakout");
             //CambiadorDeScenes.Instance.LoadMinigame("Breakout");
@@ -403,7 +425,9 @@ public class ControladorVistas : MonoBehaviour
 
     public void OnClickIrAMenuVideoJuegos(){
         //CambiadorDeScenes.Instance.LoadMinigame("GameMenu");
+        scene.LoadMenu();
         SceneManager.LoadScene("GameMenu");
+        Destroy(gameObject);
     }
 
     public PuntoDeInteres ObtenerInformacionPunto(string indice)
