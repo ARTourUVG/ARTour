@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MapeoYNavegacion/MapeoYNavegacion.unity
     guid: 1b73de808a4602d4ca627514e5db3f64
   - enabled: 1
