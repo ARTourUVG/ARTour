@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMusic:
     clip: {fileID: 8300000, guid: bdfbee007d6554842bae678c4bda98ee, type: 3}
-    volume: 0.2
+    volume: 0
     loop: 1
   impactSound:
     clip: {fileID: 8300000, guid: 1bbb9a9534117064798e8254df0a7046, type: 3}
-    volume: 1
+    volume: 0
     loop: 0
